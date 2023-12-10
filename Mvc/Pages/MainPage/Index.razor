@@ -1,0 +1,25 @@
+﻿@page "/"
+@using DAL.DbModels
+
+<PageTitle>Main</PageTitle>
+
+<h1>MainPage</h1>
+<MudItem md="2" sm="2" xs="2" Class="mb-5" >
+	<MudSelect  T="int" ValueChanged="RowsPageChanged" Label="Строк" Variant="Variant.Outlined">
+		<MudSelectItem Value="@(10)">10</MudSelectItem>
+		<MudSelectItem Value="@(50)">50</MudSelectItem>
+		<MudSelectItem Value="@(100)">100</MudSelectItem>
+	</MudSelect>
+</MudItem>
+<MudDataGrid Items="_testList">
+	<Columns>
+		<PropertyColumn Property="x => x.Id"/>
+		<PropertyColumn Property="x => x.RandomInt"/>
+	</Columns>
+</MudDataGrid>
+<MudText>
+	Всего строк @_totalCount
+</MudText>
+<MudItem Class="align-center d-flex flex-column">
+	<MudPagination BoundaryCount="2" Class="mt-4" Count="@_metaData.TotalPages" MiddleCount="5" SelectedChanged="SelectedPage"/>
+</MudItem>
